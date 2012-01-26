@@ -1,17 +1,18 @@
-<% if tracker = Tracker.current %>
-
+<% trackers = Tracker.active.group_by(&:analytics_type) -%>
+<% if google_trackers = trackers["google_analytics"] %>
   <script type="text/javascript">
     var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
     document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+    var pageTracker;
   </script>
-
+  <% for tracker in google_trackers %>
   <script type="text/javascript">
-    var pageTracker = _gat._getTracker("<%= tracker.analytics_id %>");
+    pageTracker = _gat._getTracker("<%= tracker.analytics_id %>");
     pageTracker._initData();
     pageTracker._trackPageview();
   </script>
 
-  <% if flash[:commerce_tracking] %>
+    <% if flash[:commerce_tracking] %>
 
     <script type="text/javascript">
       // report e-commerce transaction information when applicable
@@ -32,9 +33,7 @@
       pageTracker._trackTrans();
     </script>
 
+    <% end %>
+
   <% end %>
-
 <% end %>
-
-
-

@@ -5,6 +5,7 @@ Feature: analytics tracker
       | analytics_id |  analytics_type   |
       | A100         |  google_analytics |
       | A101         |  google_analytics |
+      | 123          |  yandex_metrics   |
     Given I go to the admin home page
     When I follow "Configuration"
     When I follow "Analytics Tracker"
@@ -13,6 +14,7 @@ Feature: analytics tracker
       | Analytics ID | Analytics Type   | Environment | Active | Action |
       | A100         | Google Analytics | Cucumber    | Yes    | ignore |
       | A101         | Google Analytics | Cucumber    | Yes    | ignore |
+      | 123          | Yandex.Metrics   | Cucumber    | Yes    | ignore |
 
 
   Scenario: create

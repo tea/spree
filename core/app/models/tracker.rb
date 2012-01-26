@@ -1,5 +1,5 @@
 class Tracker < ActiveRecord::Base
-  ANALYTICS_TYPES = ["google_analytics"].freeze
+  ANALYTICS_TYPES = ["google_analytics", "yandex_metrics"].freeze
   validates :analytics_type, :presence => true, :inclusion => {:in => ANALYTICS_TYPES}
 
   scope :active, where(:active => true, :environment => ENV['RAILS_ENV'])
